@@ -38,6 +38,7 @@
             label3 = new Label();
             menuStrip1 = new MenuStrip();
             registerToolStripMenuItem = new ToolStripMenuItem();
+            loginToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -119,7 +120,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { registerToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { registerToolStripMenuItem, loginToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(278, 24);
@@ -132,6 +133,13 @@
             registerToolStripMenuItem.Size = new Size(61, 20);
             registerToolStripMenuItem.Text = "Register";
             registerToolStripMenuItem.Click += registerToolStripMenuItem_Click;
+            // 
+            // loginToolStripMenuItem
+            // 
+            loginToolStripMenuItem.Name = "loginToolStripMenuItem";
+            loginToolStripMenuItem.Size = new Size(49, 20);
+            loginToolStripMenuItem.Text = "Login";
+            loginToolStripMenuItem.Click += loginToolStripMenuItem_Click;
             // 
             // Login
             // 
@@ -168,5 +176,6 @@
         private Label label3;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem registerToolStripMenuItem;
+        private ToolStripMenuItem loginToolStripMenuItem;
     }
 }
