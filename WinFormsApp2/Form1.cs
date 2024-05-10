@@ -1,3 +1,5 @@
+using System.IO;
+
 namespace WinFormsApp2
 {
     public partial class Form1 : Form
@@ -5,6 +7,10 @@ namespace WinFormsApp2
         public Form1()
         {
             InitializeComponent();
+            //For logs to clear after each app launch
+            File.WriteAllText("outputLog.txt", String.Empty);
+            /////ToAdd
+            //Add a second log that's a copy of previous log as to not lose information by accident
         }
         public Variations varEnum = Variations.Plus;
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -39,8 +45,9 @@ namespace WinFormsApp2
 
         private void button1_Click(object sender, EventArgs e)
         {
+            DateTime timeClock = DateTime.Now;
             try
-            {
+            {             
                 switch (varEnum)
                 {
                     case Variations.Plus:
@@ -59,8 +66,17 @@ namespace WinFormsApp2
                         label2.Text = $"Answer for {textBox1.Text} ^ {textBox2.Text} = " + Math.Round(Math.Pow(double.Parse(textBox1.Text), double.Parse(textBox2.Text)), 2);
                         break;
                 }
+                using (var writer = File.AppendText("outputLog.txt")) 
+                {
+                    writer.WriteLine($"[{timeClock}]:"+label2.Text);
+                }
             }
-            catch (Exception ex) { label2.Text = "Incorrect input."; }
+            catch (Exception ex) { label2.Text = "Incorrect input.";
+                using (var writer = File.AppendText("outputLog.txt"))
+                {
+                    writer.WriteLine($"[{timeClock}]:" + label2.Text);
+                }
+            }
         }
     }
     public enum Variations
