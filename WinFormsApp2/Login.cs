@@ -52,7 +52,7 @@ namespace WinFormsApp2
             ConfirmButton.Text = "Register";
             EnableLayout();
             regEnum = RegState.Register;
-            
+
 
         }
 
@@ -95,7 +95,7 @@ namespace WinFormsApp2
                     if (textBox1.Text != "" && textBox2.Text != "")
                     {
                         accountList.Add(new Account(textBox1.Text, textBox2.Text, i));
-                        string jsonSerialize = JsonConvert.SerializeObject(accountList,Newtonsoft.Json.Formatting.Indented);
+                        string jsonSerialize = JsonConvert.SerializeObject(accountList, Newtonsoft.Json.Formatting.Indented);
                         File.WriteAllText(jsonLocation, jsonSerialize);
                         label1.Text = "Registration successful, now you can log in.";
                         ConfirmButton.Text = "Login";
@@ -114,7 +114,14 @@ namespace WinFormsApp2
             ConfirmButton.Text = "Register";
             EnableLayout();
             regEnum = RegState.Register;
-            
+
+        }
+
+        private void loginToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfirmButton.Text = "Login";
+            EnableLayout();
+            regEnum = RegState.Login;
         }
     }
     public class Account
