@@ -12,7 +12,16 @@ namespace WinFormsApp2
             /////ToAdd
             //Add a second log that's a copy of previous log as to not lose information by accident
         }
+        public Form1(string name)
+        {
+            InitializeComponent();
+            //For logs to clear after each app launch
+            File.WriteAllText("outputLog.txt", String.Empty);
+            nickname = name;
+
+        }
         public Variations varEnum = Variations.Plus;
+        public string nickname = "";
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             label1.Text = "+";
@@ -68,7 +77,9 @@ namespace WinFormsApp2
                 }
                 using (var writer = File.AppendText("outputLog.txt")) 
                 {
-                    writer.WriteLine($"[{timeClock}]:"+label2.Text);
+                    if (nickname != "")
+                    writer.WriteLine($"[{timeClock}]:"+label2.Text + " - "+nickname);
+                    else writer.WriteLine($"[{timeClock}]:" + label2.Text);
                 }
             }
             catch (Exception ex) { label2.Text = "Incorrect input.";
